@@ -55,7 +55,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           />
         </p>
       </div>
-      <div className="h-full flex flex-col overflow-y-scroll divide-y divide-[#212e35]">
+      <div className="h-full flex flex-col overflow-y-scroll divide-y divide-[#212e35] pb-10">
         {Array(16)
           .fill()
           .map((e, index) => (
@@ -77,9 +77,9 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
                 </div>
                 <div className="flex flex-col w-full text-customWhite">
                   <p className="w-full flex justify-between font-medium">
-                    Bob <small className="text-[#6f7e87]">19:01</small>
+                    Lilik <small className="text-customText">19:01</small>
                   </p>
-                  <p className="text-[#6f7e87]">Latest Message</p>
+                  <p className="text-customText">Latest Message</p>
                 </div>
               </div>
             </div>
