@@ -56,7 +56,7 @@ const ChatData = () => {
         </div>
         <div
           style={{ backgroundImage: `url(${degaultBg})` }}
-          className="h-[86%] bg-purple-500"
+          className="h-[86%]"
         ></div>
         <div className="h-[7%] bg-[#212e35] p-shorter4 flex gap-3 items-center">
           {iconsBottom.map((e, index) => (
