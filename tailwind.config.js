@@ -13,6 +13,9 @@ export default {
         customBlack: "#1f2c33",
         customWhite: "#E3E3E3",
         customBg: "#212e35",
+        customHeader: "#cad0d3",
+        customText: "#7d8d97",
+        customGray: "#374044",
       },
       padding: {
         shorter4: "1vw",

@@ -14,12 +14,12 @@ const Main = ({ title }) => {
         <title>{title}</title>
       </Helmet>
 
-      <section className="px-shorter3 py-shorter4 min-h-screen ">
-        <div className="flex bg-red-700">
+      <section className="px-shorter3 py-shorter4 min-h-screen">
+        <div className="flex bg-red-700 h-[95vh] divide-x divide-customGray">
           <div className="w-[30%] bg-customWhite">
             <ChatList />
           </div>
-          <div className="w-[70%] bg-[#212e35] h-[95vh]">
+          <div className="w-[70%] bg-[#212e35]">
             <ChatBox />
           </div>
         </div>

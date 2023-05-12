@@ -23,7 +23,7 @@ const ChatList = () => {
     <>
       <div className="bg-[#212e35] py-shorter4 px-shorter4 flex justify-between items-center">
         <p className="text-customWhite text-3xl">
-          <Icon icon="gg:profile" className="hover:cursor-pointer" />
+          <Icon icon="mdi:person-circle" className="hover:cursor-pointer" />
         </p>
         <div className="flex gap-6">
           {icons.map((e, index) => (
