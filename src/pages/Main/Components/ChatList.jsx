@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { userData } from "../constants/userData";
 
 // Icons
 import { Icon } from "@iconify/react";
@@ -19,10 +20,12 @@ const icons = [
 ];
 
 const ChatList = () => {
+  const [selected, setSelected] = useState(null);
+
   return (
     <>
-      <div className="bg-[#212e35] py-shorter4 px-shorter4 flex justify-between items-center">
-        <p className="text-customWhite text-3xl">
+      <div className="bg-[#212e35] p-shorter4 flex justify-between items-center h-[7%]">
+        <p className="text-customWhite text-5xl">
           <Icon icon="mdi:person-circle" className="hover:cursor-pointer" />
         </p>
         <div className="flex gap-6">
@@ -54,12 +57,18 @@ const ChatList = () => {
           />
         </p>
       </div>
-      <div className="h-full flex flex-col overflow-y-scroll">
-        {Array(20)
+      <div className="h-full flex flex-col overflow-y-scroll divide-y divide-[#212e35]">
+        {Array(16)
           .fill()
-          .map((index) => (
+          .map((e, index) => (
             <div
-              className={`flex justify-between items-start px-[0.5vw] py-[0.5vw] bg-[#111b21] pr-5 hover:bg-[#2a3942] hover:cursor-pointer`}
+              key={index}
+              className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer ${
+                selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
+              }`}
+              onClick={() => {
+                setSelected(() => index);
+              }}
             >
               <div className="flex gap-3 items-center w-full">
                 <div className="avatar placeholder">
