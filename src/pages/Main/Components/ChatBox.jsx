@@ -10,9 +10,9 @@ import { Icon } from "@iconify/react";
 import ChatBoxEmpty from "./ChatBoxEmpty";
 
 const ChatBox = () => {
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
 
-  return data ? <h1>{data}</h1> : <ChatBoxEmpty />;
+  return data.length ? <h1>{data}</h1> : <ChatBoxEmpty />;
 };
 
 export default ChatBox;

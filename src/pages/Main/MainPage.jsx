@@ -2,7 +2,7 @@ import React from "react";
 
 // Components
 import ChatList from "./Components/ChatList";
-import ChatBox from "./Components/ChatBox";
+import ChatBox from "./Components/ChatBoxEmpty";
 
 // Miscellaneous
 import { Helmet } from "react-helmet-async";
@@ -16,7 +16,7 @@ const Main = ({ title }) => {
 
       <section className="px-shorter3 py-shorter4 min-h-screen">
         <div className="flex bg-red-700 h-[95vh] divide-x divide-customGray">
-          <div className="w-[30%] bg-customWhite">
+          <div className="w-[30%] bg-customWhite overflow-hidden">
             <ChatList />
           </div>
           <div className="w-[70%] bg-[#212e35]">
