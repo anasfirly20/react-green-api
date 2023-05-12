@@ -19,7 +19,7 @@ const icons = [
   },
 ];
 
-const ChatList = ({ selected, setSelected }) => {
+const ChatList = ({ selected, setSelected, setIndex }) => {
   return (
     <>
       <div className="bg-[#212e35] p-shorter4 flex justify-between items-center h-[7%]">
@@ -66,6 +66,7 @@ const ChatList = ({ selected, setSelected }) => {
               }`}
               onClick={() => {
                 setSelected(index);
+                setIndex(index);
               }}
             >
               <div className="flex gap-3 items-center w-full">
