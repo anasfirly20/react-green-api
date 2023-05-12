@@ -11,7 +11,7 @@ const ChatBox = () => {
     <div className="w-full h-full flex flex-col justify-center text-customWhite border-b-[6px] border-b-customTealGreen">
       <div className="flex flex-col items-center my-auto">
         <img src={svgConnect} alt="Whatsapp" />
-        <h1 className="text-3xl text-customHeader">Whatsapp Web</h1>
+        <h1 className="text-3xl text-customHeader">WhatsApp Web</h1>
         <p className="mt-5 text-sm text-customText">
           Send and receive messages without keeping your phone online.
         </p>
