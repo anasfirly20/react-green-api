@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 import ChatList from "./Components/ChatList";
+import ChatBox from "./Components/ChatBox";
 
 // Miscellaneous
 import { Helmet } from "react-helmet-async";
@@ -18,7 +19,9 @@ const Main = ({ title }) => {
           <div className="w-[30%] bg-customWhite">
             <ChatList />
           </div>
-          <div className="w-[70%] bg-customBlack h-[95vh]">sd</div>
+          <div className="w-[70%] bg-[#212e35] h-[95vh]">
+            <ChatBox />
+          </div>
         </div>
       </section>
     </>

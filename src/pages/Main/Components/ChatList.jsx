@@ -21,7 +21,7 @@ const icons = [
 const ChatList = () => {
   return (
     <>
-      <div className="bg-customBlack py-shorter4 px-shorter4 flex justify-between items-center">
+      <div className="bg-[#212e35] py-shorter4 px-shorter4 flex justify-between items-center">
         <p className="text-customWhite text-3xl">
           <Icon icon="gg:profile" className="hover:cursor-pointer" />
         </p>
