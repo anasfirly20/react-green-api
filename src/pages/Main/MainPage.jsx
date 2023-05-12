@@ -31,5 +31,3 @@ const Main = ({ title }) => {
 };
 
 export default Main;
-
-//
