@@ -61,7 +61,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           .map((e, index) => (
             <div
               key={index}
-              className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer ${
+              className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer group ${
                 selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
               }`}
               onClick={() => {
@@ -79,7 +79,14 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
                   <p className="w-full flex justify-between font-medium">
                     Lilik <small className="text-customText">19:01</small>
                   </p>
-                  <p className="text-customText">Latest Message</p>
+                  <p className="text-customText w-full flex justify-between overflow-hidden">
+                    Latest Message
+                    <Icon
+                      icon="ic:baseline-keyboard-arrow-down"
+                      className="hover:cursor-pointer translate-x-8 group-hover:translate-x-0 transition"
+                      fontSize={30}
+                    />
+                  </p>
                 </div>
               </div>
             </div>
