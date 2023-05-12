@@ -6,7 +6,7 @@ import svgConnect from "../assets/connect-svg.svg";
 // Icons
 import { Icon } from "@iconify/react";
 
-const ChatBox = () => {
+const ChatBoxEmpty = () => {
   return (
     <div className="w-full h-full flex flex-col justify-center text-customWhite border-b-[6px] border-b-customTealGreen">
       <div className="flex flex-col items-center my-auto">
@@ -29,4 +29,4 @@ const ChatBox = () => {
   );
 };
 
-export default ChatBox;
+export default ChatBoxEmpty;

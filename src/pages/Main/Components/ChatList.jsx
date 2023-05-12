@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { userData } from "../constants/userData";
 
 // Icons
@@ -19,9 +19,7 @@ const icons = [
   },
 ];
 
-const ChatList = () => {
-  const [selected, setSelected] = useState(null);
-
+const ChatList = ({ selected, setSelected }) => {
   return (
     <>
       <div className="bg-[#212e35] p-shorter4 flex justify-between items-center h-[7%]">
@@ -67,7 +65,8 @@ const ChatList = () => {
                 selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
               }`}
               onClick={() => {
-                setSelected(() => index);
+                setSelected(index);
+                console.log("SELECTED INDEX >>", index);
               }}
             >
               <div className="flex gap-3 items-center w-full">
