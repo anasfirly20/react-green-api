@@ -60,7 +60,12 @@ const ChatData = () => {
         ></div>
         <div className="h-[7%] bg-[#212e35] p-shorter4 flex gap-3 items-center">
           {iconsBottom.map((e, index) => (
-            <p key={index} className="text-customText text-3xl">
+            <p
+              key={index}
+              className={`text-customText text-3xl ${
+                e?.icon.includes("attach-file") && "rotate-45"
+              }`}
+            >
               <Icon icon={e?.icon} className="hover:cursor-pointer" />
             </p>
           ))}
