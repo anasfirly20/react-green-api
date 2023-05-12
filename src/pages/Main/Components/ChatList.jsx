@@ -66,7 +66,6 @@ const ChatList = ({ selected, setSelected }) => {
               }`}
               onClick={() => {
                 setSelected(index);
-                console.log("SELECTED INDEX >>", index);
               }}
             >
               <div className="flex gap-3 items-center w-full">
