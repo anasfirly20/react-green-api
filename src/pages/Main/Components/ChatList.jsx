@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { userData } from "../constants/userData";
 
 // Icons
@@ -19,7 +19,39 @@ const icons = [
   },
 ];
 
+// Api
+import greenApi from "../green.api";
+
+// Utils
+import { timestampToDate } from "../../../../utils";
+
 const ChatList = ({ selected, setSelected, setIndex }) => {
+  const [contacts, setContacts] = useState();
+  const [chats, setChats] = useState();
+
+  const getContacts = async () => {
+    try {
+      const res = await greenApi.getContacts();
+      setContacts(res?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getIncomingMessages = async () => {
+    try {
+      const res = await greenApi.getIncomingMessages();
+      console.log(">>>> CHATS", res?.data);
+      setChats(res?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getIncomingMessages();
+  }, []);
+
   return (
     <>
       <div className="bg-[#212e35] p-shorter4 flex justify-between items-center h-[7%]">
@@ -56,41 +88,44 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
         </p>
       </div>
       <div className="h-full flex flex-col overflow-y-scroll divide-y divide-[#212e35] pb-10">
-        {Array(16)
-          .fill()
-          .map((e, index) => (
-            <div
-              key={index}
-              className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer group ${
-                selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
-              }`}
-              onClick={() => {
-                setSelected(index);
-                setIndex(index);
-              }}
-            >
-              <div className="flex gap-3 items-center w-full">
-                <div className="avatar placeholder">
-                  <div className="bg-neutral-focus text-neutral-content rounded-full w-12 ring ring-customTealGreen">
-                    <span className="text-xl">K</span>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full text-customWhite">
-                  <p className="w-full flex justify-between font-medium">
-                    Lilik <small className="text-customText">19:01</small>
-                  </p>
-                  <p className="text-customText w-full flex justify-between overflow-hidden">
-                    Latest Message
-                    <Icon
-                      icon="ic:baseline-keyboard-arrow-down"
-                      className="hover:cursor-pointer translate-x-8 group-hover:translate-x-0 transition"
-                      fontSize={30}
-                    />
-                  </p>
+        {chats?.map((e, index) => (
+          <div
+            key={index}
+            className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer group ${
+              selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
+            }`}
+            onClick={() => {
+              setSelected(index);
+              setIndex(index);
+            }}
+          >
+            <div className="flex gap-3 items-center w-full">
+              <div className="avatar placeholder">
+                <div className="bg-neutral-focus text-neutral-content rounded-full w-12 ring ring-customTealGreen">
+                  <span className="text-xl">K</span>
                 </div>
               </div>
+              <div className="flex flex-col w-full text-customWhite">
+                <p className="w-full flex justify-between font-medium">
+                  {e?.senderName}{" "}
+                  <small className="text-customText">
+                    {timestampToDate(e?.timestamp)}
+                  </small>
+                </p>
+                <p className="text-customText w-full flex justify-between overflow-hidden">
+                  {e?.textMessage}
+                  {e?.textMessage && (
+                    <Icon
+                      icon="ic:baseline-keyboard-arrow-down"
+                      className="hover:cursor-pointer translate-x-10 group-hover:translate-x-0 transition"
+                      fontSize={30}
+                    />
+                  )}
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </>
   );

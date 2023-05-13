@@ -1,20 +1,4 @@
-export const LoadToTop = () => {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-};
-
-export const LoadToBottom = () => {
-  window.scrollTo({
-    bottom: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-};
-
-export const timestampToDate = (timestamp) => {
+function timestampToDate(timestamp) {
   // Create a new Date object with the Unix timestamp multiplied by 1000 to convert to milliseconds
   const date = new Date(timestamp * 1000);
 
@@ -30,11 +14,12 @@ export const timestampToDate = (timestamp) => {
   const formattedDate = `${year}-${month.toString().padStart(2, "0")}-${day
     .toString()
     .padStart(2, "0")}`;
-
   const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
     .toString()
-    .padStart(2, "0")}`;
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
   // Combine the formatted date and time strings and return the result
-  return `${formattedTime}`;
-};
+  return `${formattedDate} ${formattedTime}`;
+}
+
+console.log(timestampToDate(1683963158));
