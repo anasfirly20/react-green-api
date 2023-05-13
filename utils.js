@@ -5,3 +5,11 @@ export const LoadToTop = () => {
     behavior: "smooth",
   });
 };
+
+export const LoadToBottom = () => {
+  window.scrollTo({
+    bottom: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+};

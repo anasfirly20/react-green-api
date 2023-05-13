@@ -26,7 +26,7 @@ const Main = ({ title }) => {
               setIndex={setIndex}
             />
           </div>
-          <div className="w-[70%] bg-[#212e35]">
+          <div className="w-[70%] bg-[#212e35] relative">
             <ChatBox
               selected={selected}
               setSelected={setSelected}

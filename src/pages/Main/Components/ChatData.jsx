@@ -7,6 +7,10 @@ import { Icon } from "@iconify/react";
 // Assets
 import degaultBg from "../../../assets/wa-bg-darkmode.jpg";
 
+// Components
+import ScrollToBottom from "../../../Components/LoadToBottom";
+import ScrollToTop from "../../../Components/LoadToTop";
+
 const icons = [
   {
     icon: "material-symbols:search",
@@ -54,10 +58,28 @@ const ChatData = () => {
             ))}
           </div>
         </div>
+
+        {/* CHAT BUBBLE START */}
         <div
           style={{ backgroundImage: `url(${degaultBg})` }}
-          className="h-[86%]"
-        ></div>
+          className="h-[86%] overflow-y-scroll"
+        >
+          <div className="chat chat-start gap-1 px-shorter2">
+            {Array(30)
+              .fill(null)
+              .map((e) => (
+                <div className="chat-bubble bg-[#212e35]">
+                  It's over Anakin, <br />I have the high ground.
+                </div>
+              ))}
+          </div>
+          <div className="chat chat-end gap-1 px-shorter2">
+            <div className="chat-bubble bg-customTealGreenDark">
+              You underestimate my power!
+            </div>
+          </div>
+        </div>
+        {/* CHAT BUBBLE END */}
         <div className="h-[7%] bg-[#212e35] p-shorter4 flex gap-3 items-center">
           {iconsBottom.map((e, index) => (
             <p
