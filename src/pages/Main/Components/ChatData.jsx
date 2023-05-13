@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { userData } from "../constants/userData";
 
 // Icons
@@ -36,6 +36,16 @@ const ChatData = () => {
     console.log("SENT DATA >>", data);
     setData("");
   };
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
 
   return (
     <>
@@ -78,6 +88,7 @@ const ChatData = () => {
               You underestimate my power!
             </div>
           </div>
+          <div ref={messagesEndRef} />
         </div>
         {/* CHAT BUBBLE END */}
         <div className="h-[7%] bg-[#212e35] p-shorter4 flex gap-3 items-center">
