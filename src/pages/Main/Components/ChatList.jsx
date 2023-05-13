@@ -28,6 +28,7 @@ import { timestampToDate } from "../../../../utils";
 const ChatList = ({ selected, setSelected, setIndex }) => {
   const [contacts, setContacts] = useState();
   const [chats, setChats] = useState();
+  const [senderName, setSenderName] = useState();
 
   const getContacts = async () => {
     try {
@@ -41,7 +42,8 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
   const getIncomingMessages = async () => {
     try {
       const res = await greenApi.getIncomingMessages();
-      console.log(">>>> CHATS", res?.data);
+      const uniqueSenders = [...new Set(res?.data?.map((c) => c.senderName))];
+      setSenderName(uniqueSenders);
       setChats(res?.data);
     } catch (err) {
       console.log(err);
@@ -50,7 +52,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
 
   useEffect(() => {
     getIncomingMessages();
-  }, []);
+  }, [chats]);
 
   return (
     <>
@@ -87,11 +89,11 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           />
         </p>
       </div>
-      <div className="h-full flex flex-col overflow-y-scroll divide-y divide-[#212e35] pb-10">
+      <div className="h-full flex flex-col overflow-y-scroll divide-y divide-[#212e35] pb-10 scrollbar-thin scrollbar-track-[#111b21] scrollbar-thumb-[#212e35]">
         {chats?.map((e, index) => (
           <div
             key={index}
-            className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer group ${
+            className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer hover:bg-[#2a3942] group ${
               selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
             }`}
             onClick={() => {

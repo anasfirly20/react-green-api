@@ -40,7 +40,7 @@ const ChatData = () => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView();
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const ChatData = () => {
         {/* CHAT BUBBLE START */}
         <div
           style={{ backgroundImage: `url(${degaultBg})` }}
-          className="h-[86%] overflow-y-scroll"
+          className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-track-[#111b21] scrollbar-thumb-[#212e35]"
         >
           <div className="chat chat-start gap-1 px-shorter2">
             {Array(30)
