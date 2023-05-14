@@ -25,8 +25,18 @@ const Main = ({ title }) => {
     }
   };
 
+  const getNotification = async () => {
+    try {
+      const res = await greenApi.receiveNotification();
+      console.log("NOTIF >>>", res?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getSentMessages();
+    getNotification();
   }, []);
 
   return (

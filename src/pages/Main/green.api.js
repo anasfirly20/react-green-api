@@ -38,4 +38,11 @@ export default class greenApi {
       body
     );
   }
+
+  // RECEIVE NOTIFICATION
+  static async receiveNotification() {
+    return await api.get(
+      `/waInstance${idInstance}/receiveNotification/${apiTokenInstance}`
+    );
+  }
 }
