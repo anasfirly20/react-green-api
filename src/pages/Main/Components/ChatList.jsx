@@ -50,10 +50,6 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
     }
   };
 
-  useEffect(() => {
-    getIncomingMessages();
-  }, [chats]);
-
   return (
     <>
       <div className="bg-[#212e35] p-shorter4 flex justify-between items-center h-[7%]">

@@ -24,4 +24,16 @@ export default class greenApi {
       }`
     );
   }
+
+  // SEND TEXT
+  static async sendText(body) {
+    return await api.post(
+      `/waInstance${
+        import.meta.env.VITE_REACT_APP_ID_INSTANCE
+      }/lastIncomingMessages/${
+        import.meta.env.VITE_REACT_APP_API_TOKEN_INSTANCE
+      }`,
+      body
+    );
+  }
 }

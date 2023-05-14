@@ -7,9 +7,8 @@ import { Icon } from "@iconify/react";
 // Assets
 import degaultBg from "../../../assets/wa-bg-darkmode.jpg";
 
-// Components
-import ScrollToBottom from "../../../Components/LoadToBottom";
-import ScrollToTop from "../../../Components/LoadToTop";
+// Api
+import greenApi from "../green.api";
 
 const icons = [
   {
