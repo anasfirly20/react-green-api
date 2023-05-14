@@ -1,3 +1,21 @@
+export function getUserInfo() {
+  const user = localStorage.getItem("userData");
+  if (!user) return;
+  return JSON.parse(user);
+}
+
+export function getAccessTokenInfo() {
+  const accessToken = localStorage.getItem("access_token");
+  if (!accessToken) return;
+  return accessToken;
+}
+
+export function getRole() {
+  const role = localStorage.getItem("role");
+  if (!role) return;
+  return role;
+}
+
 export const LoadToTop = () => {
   window.scrollTo({
     top: 0,
@@ -37,4 +55,11 @@ export const timestampToDate = (timestamp) => {
 
   // Combine the formatted date and time strings and return the result
   return `${formattedTime}`;
+};
+
+export const clearObject = (currentState, setState) => {
+  const clearedState = Object.fromEntries(
+    Object.keys(currentState).map((key) => [key, ""])
+  );
+  setState(clearedState);
 };
