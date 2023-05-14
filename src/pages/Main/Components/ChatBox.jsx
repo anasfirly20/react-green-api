@@ -17,7 +17,7 @@ const ChatBox = ({ selected, setSelected, index }) => {
     try {
       const res = await greenApi.getOutgoingMessages();
       setData(res?.data?.reverse());
-      console.log("REVERSED >>", data);
+      console.log("REVERSED >>", data.reverse());
     } catch (err) {
       console.log(err);
     }

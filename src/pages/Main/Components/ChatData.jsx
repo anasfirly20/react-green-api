@@ -44,8 +44,7 @@ const ChatData = ({ data, getSentMessages }) => {
   }, []);
   // SCROLL END
 
-  // data?.map((e) => console.log("DATA>>>", e?.textMessage));
-  // console.log(data?.textMessage);
+  // data?.map((e) => console.log("DATA>>>", e?.chatId));
 
   return (
     <>
@@ -79,18 +78,21 @@ const ChatData = ({ data, getSentMessages }) => {
           <div className="chat chat-start gap-1 px-shorter2">
             {Array(30)
               .fill(null)
-              .map((e) => (
-                <div className="chat-bubble bg-[#212e35]">
+              .map((e, index) => (
+                <div className="chat-bubble bg-[#212e35]" key={index}>
                   It's over Anakin, <br />I have the high ground.
                 </div>
               ))}
           </div>
           <div className="chat chat-end gap-1 px-shorter2">
-            {data?.map((e) => (
-              <div className="chat-bubble bg-customTealGreenDark">
-                {e?.textMessage}
-              </div>
-            ))}
+            {data?.map(
+              (e) =>
+                e?.chatId === `${telephoneStorage}@c.us` && (
+                  <div className="chat-bubble bg-customTealGreenDark">
+                    {e?.textMessage}
+                  </div>
+                )
+            )}
           </div>
           <div ref={messagesEndRef} />
         </div>
