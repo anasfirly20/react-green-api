@@ -31,8 +31,6 @@ const ChatData = ({ data, getSentMessages }) => {
         });
         setMessage("");
         getSentMessages();
-      } else {
-        toast.error("An error occurred");
       }
     } catch (err) {
       toast.error(err?.message);
