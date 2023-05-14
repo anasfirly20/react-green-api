@@ -23,7 +23,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = "/";
+    navigate(0);
   };
 
   const handleNewChat = () => {
