@@ -10,6 +10,12 @@ export const getApiTokenInstance = () => {
   return JSON.parse(apiTokenInstance);
 };
 
+export const getTelephone = () => {
+  const telephone = localStorage.getItem("telephone");
+  if (!telephone) return;
+  return JSON.parse(telephone);
+};
+
 export function getRole() {
   const role = localStorage.getItem("role");
   if (!role) return;

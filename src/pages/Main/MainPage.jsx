@@ -11,8 +11,6 @@ const Main = ({ title }) => {
   const [selected, setSelected] = useState(null);
   const [index, setIndex] = useState();
 
-  console.log(">>>>>");
-
   return (
     <>
       <Helmet>

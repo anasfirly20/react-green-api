@@ -20,6 +20,30 @@ export const chatData = [
   {
     senderName: "Bob",
     textMessage: "HALOOO",
-    timeStamp: 1684019929,
+    timeStamp: Date.now(),
+  },
+];
+
+export const dropDown = [
+  {
+    label: "New Chat",
+  },
+  {
+    label: "Logout",
+  },
+];
+
+export const icons = [
+  {
+    icon: "heroicons:user-group-solid",
+  },
+  {
+    icon: "entypo:circular-graph",
+  },
+  {
+    icon: "mdi:message-text",
+  },
+  {
+    icon: "ic:outline-more-vert",
   },
 ];

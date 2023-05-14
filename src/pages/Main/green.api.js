@@ -27,10 +27,10 @@ export default class greenApi {
 
   // SEND TEXT
   static async sendText(body) {
+    console.log("SENT BODY >>>", body);
+
     return await api.post(
-      `/waInstance${
-        import.meta.env.VITE_REACT_APP_ID_INSTANCE
-      }/lastIncomingMessages/${
+      `/waInstance${import.meta.env.VITE_REACT_APP_ID_INSTANCE}/sendMessage/${
         import.meta.env.VITE_REACT_APP_API_TOKEN_INSTANCE
       }`,
       body

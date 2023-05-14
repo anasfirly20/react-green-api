@@ -1,51 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { chatData, userData } from "../constants/userData";
+
+// Constants
+import { chatData, userData, dropDown, icons } from "../constants/userData";
 
 // Icons
 import { Icon } from "@iconify/react";
-
-// Constants
-import ChatData from "./ChatData";
-
-const icons = [
-  {
-    icon: "heroicons:user-group-solid",
-  },
-  {
-    icon: "entypo:circular-graph",
-  },
-  {
-    icon: "mdi:message-text",
-  },
-  {
-    icon: "ic:outline-more-vert",
-  },
-];
-
-const dropDown = [
-  {
-    label: "New Chat",
-  },
-  {
-    label: "Logout",
-  },
-];
 
 // Api
 import greenApi from "../green.api";
 
 // Utils
-import { timestampToDate } from "../../../../utils";
+import { timestampToDate, getTelephone } from "../../../../utils";
 
 const ChatList = ({ selected, setSelected, setIndex }) => {
   const [chats, setChats] = useState(chatData);
   const [telephone, setTelephone] = useState();
   const [telephoneSubmit, setTelephoneSubmit] = useState();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setTelephone({ ...telephone, [name]: value });
-  };
+  const telephoneStorage = getTelephone();
 
   const handleLogout = () => {
     localStorage.clear();
@@ -99,7 +71,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           ))}
         </div>
       </div>
-      {telephoneSubmit && (
+      {telephoneStorage && (
         <div className="bg-[#111b21] py-[0.5vw] px-shorter4 flex items-center gap-3">
           <div className="relative w-full">
             <p className="absolute top-[50%] translate-y-[-50%] px-3 text-lg text-customWhite">
@@ -123,7 +95,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
         </div>
       )}
       <div className="h-full flex flex-col overflow-y-scroll divide-y divide-customBg pb-10 scrollbar-thin scrollbar-track-[#111b21] scrollbar-thumb-customBg">
-        {telephoneSubmit ? (
+        {telephoneStorage ? (
           chats?.map((e, index) => (
             <div
               key={index}
@@ -138,14 +110,14 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
               <div className="flex gap-3 items-center w-full">
                 <div className="avatar placeholder">
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-12 ring ring-customTealGreen">
-                    <span className="text-xl">K</span>
+                    <span className="text-xl">N</span>
                   </div>
                 </div>
                 <div className="flex flex-col w-full text-customWhite">
                   <p className="w-full flex justify-between font-medium">
                     {telephone}
                     <small className="text-customText">
-                      {timestampToDate(e?.timestamp)}
+                      {timestampToDate(e?.timeStamp)}
                     </small>
                   </p>
                   <p className="text-customText w-full flex justify-between overflow-hidden">
@@ -176,6 +148,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
               onClick={(e) => {
                 e.preventDefault();
                 setTelephoneSubmit(telephone);
+                localStorage.setItem("telephone", telephone);
               }}
             >
               Submit
