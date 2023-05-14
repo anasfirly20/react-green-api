@@ -35,7 +35,7 @@ const App = () => {
               <Route
                 path="*"
                 element={
-                  <Navigate to={idInstance && apiTokenInstance ? "/" : "/"} />
+                  <Navigate to={idInstance && apiTokenInstance && "/"} />
                 }
               />
               {idInstance && apiTokenInstance ? (

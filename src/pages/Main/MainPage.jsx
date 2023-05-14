@@ -6,6 +6,7 @@ import ChatBox from "./Components/ChatBox";
 
 // Miscellaneous
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-hot-toast";
 
 // APi
 import greenApi from "./green.api";
@@ -36,7 +37,7 @@ const Main = ({ title }) => {
 
   useEffect(() => {
     getSentMessages();
-    getNotification();
+    // getNotification();
   }, []);
 
   return (

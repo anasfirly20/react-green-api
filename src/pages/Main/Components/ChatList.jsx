@@ -11,8 +11,10 @@ import greenApi from "../green.api";
 
 // Utils
 import { timestampToDate, getTelephone, enterKeyDown } from "../../../../utils";
+import { useNavigate } from "react-router-dom";
 
 const ChatList = ({ selected, setSelected, setIndex, data }) => {
+  const navigate = useNavigate();
   const [chats, setChats] = useState(chatData);
   const [telephone, setTelephone] = useState();
   const [telephoneSubmit, setTelephoneSubmit] = useState();
@@ -37,7 +39,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
 
   const handeDeleteChat = () => {
     localStorage.removeItem("telephone");
-    window.location.reload();
+    navigate(0);
   };
 
   return (

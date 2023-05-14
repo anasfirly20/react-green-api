@@ -8,8 +8,11 @@ import { clearObject } from "../../../utils";
 
 // Miscellaneous
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ title }) => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     idInstance: "",
     ApiTokenInstance: "",
@@ -28,7 +31,8 @@ const Login = ({ title }) => {
         "apiTokenInstance",
         JSON.stringify(data?.ApiTokenInstance)
       );
-      window.location.reload();
+      navigate(0);
+      toast.success("WELCOME");
     }
   };
 
