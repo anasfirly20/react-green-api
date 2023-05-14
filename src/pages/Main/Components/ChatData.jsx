@@ -44,8 +44,6 @@ const ChatData = ({ data, getSentMessages }) => {
   }, []);
   // SCROLL END
 
-  // data?.map((e) => console.log("DATA>>>", e?.chatId));
-
   return (
     <>
       <div className="flex flex-col h-full">
@@ -86,9 +84,12 @@ const ChatData = ({ data, getSentMessages }) => {
           </div>
           <div className="chat chat-end gap-1 px-shorter2">
             {data?.map(
-              (e) =>
+              (e, index) =>
                 e?.chatId === `${telephoneStorage}@c.us` && (
-                  <div className="chat-bubble bg-customTealGreenDark">
+                  <div
+                    key={index}
+                    className="chat-bubble bg-customTealGreenDark"
+                  >
                     {e?.textMessage}
                   </div>
                 )

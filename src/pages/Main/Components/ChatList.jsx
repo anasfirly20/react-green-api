@@ -12,7 +12,7 @@ import greenApi from "../green.api";
 // Utils
 import { timestampToDate, getTelephone } from "../../../../utils";
 
-const ChatList = ({ selected, setSelected, setIndex }) => {
+const ChatList = ({ selected, setSelected, setIndex, data }) => {
   const [chats, setChats] = useState(chatData);
   const [telephone, setTelephone] = useState();
   const [telephoneSubmit, setTelephoneSubmit] = useState();
@@ -52,7 +52,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
             <>
               {e?.icon.includes("outline-more-vert") ? (
                 <div className="dropdown dropdown-end" key={index}>
-                  <label tabIndex={0} key={index}>
+                  <label tabIndex={0}>
                     {" "}
                     <p className="text-customWhite text-2xl">
                       <Icon icon={e?.icon} className="hover:cursor-pointer" />
@@ -134,7 +134,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
                     </small>
                   </p>
                   <div className="text-customText w-full flex justify-between">
-                    {e?.textMessage}
+                    <p>{e?.textMessage}</p>
                     {e?.textMessage && (
                       <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="">

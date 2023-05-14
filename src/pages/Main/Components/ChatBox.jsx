@@ -10,23 +10,7 @@ import greenApi from "../green.api";
 import ChatBoxEmpty from "./ChatBoxEmpty";
 import ChatData from "./ChatData";
 
-const ChatBox = ({ selected, setSelected, index }) => {
-  const [data, setData] = useState("");
-
-  const getSentMessages = async () => {
-    try {
-      const res = await greenApi.getOutgoingMessages();
-      setData(res?.data?.reverse());
-      console.log("REVERSED >>", data.reverse());
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getSentMessages();
-  }, []);
-
+const ChatBox = ({ selected, setSelected, index, data, getSentMessages }) => {
   return selected === index ? (
     <ChatData data={data} getSentMessages={getSentMessages} />
   ) : (
