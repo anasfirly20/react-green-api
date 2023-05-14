@@ -29,7 +29,6 @@ const Login = ({ title }) => {
         JSON.stringify(data?.ApiTokenInstance)
       );
       window.location.reload();
-      clearObject(data, setData);
     }
   };
 

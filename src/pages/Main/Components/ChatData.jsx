@@ -13,7 +13,7 @@ import greenApi from "../green.api";
 import { iconsBottomChatData, iconsChatData } from "../constants/userData";
 
 // Utils
-import { getTelephone, enterKeyDown } from "../../../../utils";
+import { getTelephone, enterKeyDown, clearObject } from "../../../../utils";
 
 // Miscellaneous
 import { toast } from "react-hot-toast";
