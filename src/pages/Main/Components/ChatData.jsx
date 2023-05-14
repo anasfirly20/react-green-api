@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { userData } from "../constants/userData";
 
 // Icons
 import { Icon } from "@iconify/react";
@@ -10,30 +9,26 @@ import degaultBg from "../../../assets/wa-bg-darkmode.jpg";
 // Api
 import greenApi from "../green.api";
 
-const icons = [
-  {
-    icon: "material-symbols:search",
-  },
-  {
-    icon: "ic:outline-more-vert",
-  },
-];
+// Constants
+import { iconsBottomChatData, iconsChatData } from "../constants/userData";
 
-const iconsBottom = [
-  {
-    icon: "ic:outline-emoji-emotions",
-  },
-  {
-    icon: "material-symbols:attach-file",
-  },
-];
+// Utils
+import { getTelephone } from "../../../../utils";
 
 const ChatData = () => {
-  const [data, setData] = useState("");
+  const telephoneStorage = getTelephone();
+  const [message, setMessage] = useState("");
 
-  const handleSend = () => {
-    console.log("SENT DATA >>", data);
-    setData("");
+  const sendText = async () => {
+    try {
+      await greenApi.sendText({
+        chatId: `${telephoneStorage}@c.us`,
+        message: message,
+      });
+      setMessage("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const messagesEndRef = useRef(null);
@@ -55,12 +50,14 @@ const ChatData = () => {
               <Icon icon="mdi:person-circle" className="hover:cursor-pointer" />
             </p>
             <div className="flex flex-col text-customText">
-              <h3 className="text-customWhite font-medium">USER'S NAME</h3>
+              <h3 className="text-customWhite font-medium">
+                {telephoneStorage}
+              </h3>
               <p className="text-sm">click here for contact info</p>
             </div>
           </div>
           <div className="flex gap-6">
-            {icons.map((e, index) => (
+            {iconsChatData.map((e, index) => (
               <p key={index} className="text-customWhite text-2xl">
                 <Icon icon={e?.icon} className="hover:cursor-pointer" />
               </p>
@@ -91,7 +88,7 @@ const ChatData = () => {
         </div>
         {/* CHAT BUBBLE END */}
         <div className="h-[7%] bg-[#212e35] p-shorter4 flex gap-3 items-center">
-          {iconsBottom.map((e, index) => (
+          {iconsBottomChatData.map((e, index) => (
             <p
               key={index}
               className={`text-customText text-3xl ${
@@ -105,16 +102,16 @@ const ChatData = () => {
             type="text"
             placeholder="Type a message"
             className="outline-none w-full rounded-md px-3 py-2 text-base text-customWhite bg-[#2a3942]"
-            value={data}
+            value={message}
             onChange={(e) => {
-              setData(e.target.value);
+              setMessage(e.target.value);
             }}
           />
           <p className="text-customText text-3xl">
             <Icon
-              icon={data ? "ic:sharp-send" : "mdi:microphone"}
+              icon={message ? "ic:sharp-send" : "mdi:microphone"}
               className="hover:cursor-pointer"
-              onClick={data ? handleSend : () => console.log("MIC ACTION")}
+              onClick={message ? sendText : () => console.log("MIC ACTION")}
             />
           </p>
         </div>

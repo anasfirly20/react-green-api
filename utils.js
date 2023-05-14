@@ -13,7 +13,7 @@ export const getApiTokenInstance = () => {
 export const getTelephone = () => {
   const telephone = localStorage.getItem("telephone");
   if (!telephone) return;
-  return JSON.parse(telephone);
+  return telephone;
 };
 
 export function getRole() {

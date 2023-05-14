@@ -47,3 +47,21 @@ export const icons = [
     icon: "ic:outline-more-vert",
   },
 ];
+
+export const iconsChatData = [
+  {
+    icon: "material-symbols:search",
+  },
+  {
+    icon: "ic:outline-more-vert",
+  },
+];
+
+export const iconsBottomChatData = [
+  {
+    icon: "ic:outline-emoji-emotions",
+  },
+  {
+    icon: "material-symbols:attach-file",
+  },
+];

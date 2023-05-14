@@ -28,6 +28,19 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
     console.log("ADD CHAT");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (telephone) {
+      setTelephoneSubmit(telephone);
+      localStorage.setItem("telephone", telephone);
+    }
+  };
+
+  const handeDeleteChat = () => {
+    localStorage.removeItem("telephone");
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="bg-[#212e35] p-shorter4 flex justify-between items-center h-[7%]">
@@ -38,8 +51,8 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           {icons.map((e, index) => (
             <>
               {e?.icon.includes("outline-more-vert") ? (
-                <div key={index} className="dropdown dropdown-end">
-                  <label tabIndex={0}>
+                <div className="dropdown dropdown-end" key={index}>
+                  <label tabIndex={0} key={index}>
                     {" "}
                     <p className="text-customWhite text-2xl">
                       <Icon icon={e?.icon} className="hover:cursor-pointer" />
@@ -99,7 +112,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           chats?.map((e, index) => (
             <div
               key={index}
-              className={`flex justify-between items-start p-shorter4 pr-5 bg-[#111b21] hover:cursor-pointer hover:bg-[#2a3942] group ${
+              className={`flex justify-between items-start p-shorter4 bg-[#111b21] hover:cursor-pointer hover:bg-[#2a3942] group ${
                 selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
               }`}
               onClick={() => {
@@ -115,21 +128,36 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
                 </div>
                 <div className="flex flex-col w-full text-customWhite">
                   <p className="w-full flex justify-between font-medium">
-                    {telephone}
+                    +{telephoneStorage}
                     <small className="text-customText">
                       {timestampToDate(e?.timeStamp)}
                     </small>
                   </p>
-                  <p className="text-customText w-full flex justify-between overflow-hidden">
+                  <div className="text-customText w-full flex justify-between">
                     {e?.textMessage}
                     {e?.textMessage && (
-                      <Icon
-                        icon="ic:baseline-keyboard-arrow-down"
-                        className="hover:cursor-pointer translate-x-10 group-hover:translate-x-0 transition"
-                        fontSize={30}
-                      />
+                      <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="">
+                          <Icon
+                            icon="ic:baseline-keyboard-arrow-down"
+                            className="hover:cursor-pointer translate-x-14 group-hover:translate-x-0 transition"
+                            fontSize={30}
+                          />
+                        </label>
+                        <ul
+                          tabIndex={0}
+                          className="dropdown-content menu p-2 shadow text-customWhite bg-[#212e35] w-52 mt-3 space-y-3"
+                        >
+                          <li
+                            className="text-base cursor-pointer hover:bg-customBlack px-5 py-2"
+                            onClick={handeDeleteChat}
+                          >
+                            Delete Chat
+                          </li>
+                        </ul>
+                      </div>
                     )}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -138,18 +166,16 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
           <div className="flex flex-col justify-center items-center h-full gap-3 px-5">
             <h1>START A NEW CHAT</h1>
             <input
-              className="w-full p-2"
+              className="w-full p-2 outline-none rounded-lg"
               type="number"
-              onChange={(e) => setTelephone(e.target.value)}
+              onChange={(e) => {
+                setTelephone(e.target.value);
+              }}
               placeholder="Type contact's number"
             />
             <button
               className="w-[30%] p-2 font-semibold rounded-lg bg-customTealGreen text-customWhite"
-              onClick={(e) => {
-                e.preventDefault();
-                setTelephoneSubmit(telephone);
-                localStorage.setItem("telephone", telephone);
-              }}
+              onClick={handleSubmit}
             >
               Submit
             </button>
