@@ -28,14 +28,12 @@ const App = () => {
               <Route
                 path="*"
                 element={
-                  <Navigate
-                    to={idInstance && apiTokenInstance ? "/main" : "/"}
-                  />
+                  <Navigate to={idInstance && apiTokenInstance ? "/" : "/"} />
                 }
               />
               {idInstance && apiTokenInstance ? (
                 <Route
-                  path="/main"
+                  path="/"
                   element={<MainPage title="Main | Whatsapp green-api" />}
                 />
               ) : (
