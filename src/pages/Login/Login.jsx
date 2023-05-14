@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <section className="min-h-screen bg-customBg flex justify-center items-start py-longer text-customWhite">
       <form>
-        <h1 className="text-center font-semibold text-3xl">LOGIN</h1>
+        <h1 className="text-center font-semibold text-3xl mb-3">LOGIN</h1>
         <h3>
           Enter your Id Instance and Api Token Instance from your green-api
           account

@@ -1,14 +1,14 @@
-export function getUserInfo() {
-  const user = localStorage.getItem("userData");
-  if (!user) return;
-  return JSON.parse(user);
-}
+export const getIdInstance = () => {
+  const idInstance = localStorage.getItem("idInstance");
+  if (!idInstance) return;
+  return JSON.parse(idInstance);
+};
 
-export function getAccessTokenInfo() {
-  const accessToken = localStorage.getItem("access_token");
-  if (!accessToken) return;
-  return accessToken;
-}
+export const getApiTokenInstance = () => {
+  const apiTokenInstance = localStorage.getItem("apiTokenInstance");
+  if (!apiTokenInstance) return;
+  return JSON.parse(apiTokenInstance);
+};
 
 export function getRole() {
   const role = localStorage.getItem("role");

@@ -3,12 +3,15 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import "./App.css";
 
+// Utils
+import { getIdInstance, getApiTokenInstance } from "../utils";
+
 const MainPage = lazy(() => import("./pages/Main/MainPage"));
 const LoginPage = lazy(() => import("./pages/Login/Login"));
 
 const App = () => {
-  const getIdInstance = localStorage.getItem("idInstance");
-  const getApiTokenInstance = localStorage.getItem("apiTokenInstance");
+  const idInstance = getIdInstance();
+  const apiTokenInstance = getApiTokenInstance();
 
   return (
     <>
@@ -26,11 +29,11 @@ const App = () => {
                 path="*"
                 element={
                   <Navigate
-                    to={getIdInstance && getApiTokenInstance ? "/main" : "/"}
+                    to={idInstance && apiTokenInstance ? "/main" : "/"}
                   />
                 }
               />
-              {getIdInstance && getApiTokenInstance ? (
+              {idInstance && apiTokenInstance ? (
                 <Route
                   path="/main"
                   element={<MainPage title="Whatsapp green-api" />}
