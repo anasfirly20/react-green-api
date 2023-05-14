@@ -2,6 +2,7 @@ import React, { useState, lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import "./App.css";
+import { Toaster } from "react-hot-toast";
 
 // Utils
 import { getIdInstance, getApiTokenInstance } from "../utils";
@@ -17,6 +18,12 @@ const App = () => {
     <>
       <BrowserRouter>
         <HelmetProvider>
+          <Toaster
+            // containerClassName="font-medium text-customText2"
+            toastOptions={{
+              duration: 2500,
+            }}
+          />
           <Suspense
             fallback={
               <section className="flex flex-col items-center justify-center min-h-screen">

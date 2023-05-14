@@ -15,19 +15,27 @@ import { iconsBottomChatData, iconsChatData } from "../constants/userData";
 // Utils
 import { getTelephone, enterKeyDown } from "../../../../utils";
 
+// Miscellaneous
+import { toast } from "react-hot-toast";
+
 const ChatData = ({ data, getSentMessages }) => {
   const telephoneStorage = getTelephone();
   const [message, setMessage] = useState("");
 
   const sendText = async () => {
     try {
-      await greenApi.sendText({
-        chatId: `${telephoneStorage}@c.us`,
-        message: message,
-      });
-      setMessage("");
-      getSentMessages();
+      if (message) {
+        await greenApi.sendText({
+          chatId: `${telephoneStorage}@c.us`,
+          message: message,
+        });
+        setMessage("");
+        getSentMessages();
+      } else {
+        toast.error("An error occurred");
+      }
     } catch (err) {
+      toast.error(err?.message);
       console.log(err);
     }
   };
