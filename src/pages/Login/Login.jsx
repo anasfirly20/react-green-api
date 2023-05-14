@@ -25,7 +25,8 @@ const Login = () => {
         "apiTokenInstance",
         JSON.stringify(data?.ApiTokenInstance)
       );
-      window.location.href = "/main";
+      // window.location.href = "/main";
+      window.location.reload();
       clearObject(data, setData);
     }
   };
