@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Input from "../../Components/Input";
 
 // Utils
-import { clearObject } from "../../../utils";
+import { getIdInstance, getApiTokenInstance } from "../../../utils";
 
 // Miscellaneous
 import { Helmet } from "react-helmet-async";
@@ -12,11 +12,15 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ title }) => {
+  const idInstance = getIdInstance();
+  const apiTokenInstance = getApiTokenInstance();
+
   const navigate = useNavigate();
   const [data, setData] = useState({
     idInstance: "",
     ApiTokenInstance: "",
   });
+  const [trigger, setTrigger] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

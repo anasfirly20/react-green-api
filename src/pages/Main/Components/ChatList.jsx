@@ -17,7 +17,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
   const navigate = useNavigate();
   const [chats, setChats] = useState(chatData);
   const [telephone, setTelephone] = useState();
-  const [telephoneSubmit, setTelephoneSubmit] = useState();
+  const [trigger, setTrigger] = useState();
 
   const telephoneStorage = getTelephone();
 
@@ -32,14 +32,14 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
 
   const handleSubmit = (e) => {
     if (telephone) {
-      setTelephoneSubmit(telephone);
+      setTrigger(telephone);
       localStorage.setItem("telephone", telephone);
     }
   };
 
   const handeDeleteChat = () => {
     localStorage.removeItem("telephone");
-    setTelephoneSubmit("");
+    setTrigger("");
   };
 
   return (
