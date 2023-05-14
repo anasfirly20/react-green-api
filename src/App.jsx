@@ -36,7 +36,7 @@ const App = () => {
               {idInstance && apiTokenInstance ? (
                 <Route
                   path="/main"
-                  element={<MainPage title="Whatsapp green-api" />}
+                  element={<MainPage title="Main | Whatsapp green-api" />}
                 />
               ) : (
                 <Route

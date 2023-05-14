@@ -1,6 +1,6 @@
 import api from "../../api";
 
-// Local storage
+// Utils
 import { getIdInstance, getApiTokenInstance } from "../../../utils";
 
 const idInstance = getIdInstance();
@@ -32,7 +32,7 @@ export default class greenApi {
 
   // SEND TEXT
   static async sendText(body) {
-    console.log("SENT BODY >>>", body);
+    console.log("SENT TEXT BODY >>>", body);
     return await api.post(
       `/waInstance${idInstance}/sendMessage/${apiTokenInstance}`,
       body

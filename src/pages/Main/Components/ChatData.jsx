@@ -13,7 +13,7 @@ import greenApi from "../green.api";
 import { iconsBottomChatData, iconsChatData } from "../constants/userData";
 
 // Utils
-import { getTelephone } from "../../../../utils";
+import { getTelephone, enterKeyDown } from "../../../../utils";
 
 const ChatData = ({ data, getSentMessages }) => {
   const telephoneStorage = getTelephone();
@@ -117,11 +117,7 @@ const ChatData = ({ data, getSentMessages }) => {
             onChange={(e) => {
               setMessage(e.target.value);
             }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                sendText();
-              }
-            }}
+            onKeyDown={(e) => enterKeyDown(e, sendText)}
           />
           <p className="text-customText text-3xl">
             <Icon

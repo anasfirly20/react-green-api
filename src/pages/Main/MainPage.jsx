@@ -11,8 +11,8 @@ import { Helmet } from "react-helmet-async";
 import greenApi from "./green.api";
 
 const Main = ({ title }) => {
-  const [selected, setSelected] = useState(null);
-  const [index, setIndex] = useState();
+  const [selected, setSelected] = useState(0);
+  const [index, setIndex] = useState(null);
   const [data, setData] = useState();
 
   const getSentMessages = async () => {

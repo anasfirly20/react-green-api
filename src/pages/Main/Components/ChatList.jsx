@@ -10,7 +10,7 @@ import { Icon } from "@iconify/react";
 import greenApi from "../green.api";
 
 // Utils
-import { timestampToDate, getTelephone } from "../../../../utils";
+import { timestampToDate, getTelephone, enterKeyDown } from "../../../../utils";
 
 const ChatList = ({ selected, setSelected, setIndex, data }) => {
   const [chats, setChats] = useState(chatData);
@@ -29,7 +29,6 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     if (telephone) {
       setTelephoneSubmit(telephone);
       localStorage.setItem("telephone", telephone);
@@ -172,6 +171,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
                 setTelephone(e.target.value);
               }}
               placeholder="Type contact's number"
+              onKeyDown={(e) => enterKeyDown(e, handleSubmit)}
             />
             <button
               className="w-[30%] p-2 font-semibold rounded-lg bg-customTealGreen text-customWhite"

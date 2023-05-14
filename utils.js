@@ -69,3 +69,10 @@ export const clearObject = (currentState, setState) => {
   );
   setState(clearedState);
 };
+
+// key down ENTER function
+export const enterKeyDown = (e, functionToBeCalled) => {
+  if (e.key === "Enter") {
+    functionToBeCalled();
+  }
+};
