@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { userData } from "../constants/userData";
+import { chatData, userData } from "../constants/userData";
 
 // Icons
 import { Icon } from "@iconify/react";
+
+// Constants
+import ChatData from "./ChatData";
 
 const icons = [
   {
@@ -35,36 +38,9 @@ import greenApi from "../green.api";
 import { timestampToDate } from "../../../../utils";
 
 const ChatList = ({ selected, setSelected, setIndex }) => {
-  const [contacts, setContacts] = useState();
-  const [chats, setChats] = useState();
-  const [senderName, setSenderName] = useState();
+  const [chats, setChats] = useState(chatData);
   const [telephone, setTelephone] = useState();
   const [telephoneSubmit, setTelephoneSubmit] = useState();
-
-  const getContacts = async () => {
-    try {
-      const res = await greenApi.getContacts();
-      setContacts(res?.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const getIncomingMessages = async () => {
-    try {
-      const res = await greenApi.getIncomingMessages();
-      const uniqueSenders = [...new Set(res?.data?.map((c) => c.senderName))];
-      setSenderName(uniqueSenders);
-      setChats(res?.data);
-      console.log(">>>>", res?.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    // getIncomingMessages();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -167,7 +143,7 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
                 </div>
                 <div className="flex flex-col w-full text-customWhite">
                   <p className="w-full flex justify-between font-medium">
-                    {e?.senderName}{" "}
+                    {telephone}
                     <small className="text-customText">
                       {timestampToDate(e?.timestamp)}
                     </small>
@@ -200,7 +176,6 @@ const ChatList = ({ selected, setSelected, setIndex }) => {
               onClick={(e) => {
                 e.preventDefault();
                 setTelephoneSubmit(telephone);
-                console.log(telephone);
               }}
             >
               Submit

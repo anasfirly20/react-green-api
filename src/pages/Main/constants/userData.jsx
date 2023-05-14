@@ -15,3 +15,11 @@ export const userData = [
     time: "19:01",
   },
 ];
+
+export const chatData = [
+  {
+    senderName: "Bob",
+    textMessage: "HALOOO",
+    timeStamp: 1684019929,
+  },
+];
