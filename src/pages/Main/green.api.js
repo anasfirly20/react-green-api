@@ -15,6 +15,8 @@ export default class greenApi {
       }`
     );
   }
+
+  // GET MESSAGES
   static async getIncomingMessages() {
     return await api.get(
       `/waInstance${
@@ -24,11 +26,19 @@ export default class greenApi {
       }`
     );
   }
+  static async getOutgoingMessages() {
+    return await api.get(
+      `/waInstance${
+        import.meta.env.VITE_REACT_APP_ID_INSTANCE
+      }/lastOutgoingMessages/${
+        import.meta.env.VITE_REACT_APP_API_TOKEN_INSTANCE
+      }`
+    );
+  }
 
   // SEND TEXT
   static async sendText(body) {
     console.log("SENT BODY >>>", body);
-
     return await api.post(
       `/waInstance${import.meta.env.VITE_REACT_APP_ID_INSTANCE}/sendMessage/${
         import.meta.env.VITE_REACT_APP_API_TOKEN_INSTANCE

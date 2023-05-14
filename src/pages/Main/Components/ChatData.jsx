@@ -15,7 +15,7 @@ import { iconsBottomChatData, iconsChatData } from "../constants/userData";
 // Utils
 import { getTelephone } from "../../../../utils";
 
-const ChatData = () => {
+const ChatData = ({ data, getSentMessages }) => {
   const telephoneStorage = getTelephone();
   const [message, setMessage] = useState("");
 
@@ -26,11 +26,13 @@ const ChatData = () => {
         message: message,
       });
       setMessage("");
+      getSentMessages();
     } catch (err) {
       console.log(err);
     }
   };
 
+  // SCROLL START
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -40,6 +42,10 @@ const ChatData = () => {
   useEffect(() => {
     scrollToBottom();
   }, []);
+  // SCROLL END
+
+  // data?.map((e) => console.log("DATA>>>", e?.textMessage));
+  // console.log(data?.textMessage);
 
   return (
     <>
@@ -51,7 +57,7 @@ const ChatData = () => {
             </p>
             <div className="flex flex-col text-customText">
               <h3 className="text-customWhite font-medium">
-                {telephoneStorage}
+                +{telephoneStorage}
               </h3>
               <p className="text-sm">click here for contact info</p>
             </div>
@@ -80,9 +86,11 @@ const ChatData = () => {
               ))}
           </div>
           <div className="chat chat-end gap-1 px-shorter2">
-            <div className="chat-bubble bg-customTealGreenDark">
-              You underestimate my power!
-            </div>
+            {data?.map((e) => (
+              <div className="chat-bubble bg-customTealGreenDark">
+                {e?.textMessage}
+              </div>
+            ))}
           </div>
           <div ref={messagesEndRef} />
         </div>
@@ -105,6 +113,11 @@ const ChatData = () => {
             value={message}
             onChange={(e) => {
               setMessage(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                sendText();
+              }
             }}
           />
           <p className="text-customText text-3xl">
