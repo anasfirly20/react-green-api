@@ -33,7 +33,11 @@ const ChatData = ({ data, getSentMessages }) => {
         getSentMessages();
       }
     } catch (err) {
-      toast.error(err?.message);
+      if (err?.message === "Network Error") {
+        toast.error("Invalid green api user data");
+      } else {
+        toast.error(err?.message);
+      }
       console.log(err);
     }
   };

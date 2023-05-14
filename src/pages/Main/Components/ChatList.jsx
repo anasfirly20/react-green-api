@@ -39,7 +39,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
 
   const handeDeleteChat = () => {
     localStorage.removeItem("telephone");
-    navigate(0);
+    setTelephoneSubmit("");
   };
 
   return (

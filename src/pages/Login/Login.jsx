@@ -32,7 +32,6 @@ const Login = ({ title }) => {
         JSON.stringify(data?.ApiTokenInstance)
       );
       navigate(0);
-      toast.success("WELCOME");
     }
   };
 
