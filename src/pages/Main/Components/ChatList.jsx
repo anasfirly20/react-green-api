@@ -42,8 +42,11 @@ const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
     setTrigger("");
     setSelected(2);
     setIndex(1);
-    // console.log("INDEX DELETE >", index);
-    // console.log("SELECTED DELETE >", selected);
+  };
+
+  const handleSimilarIndex = () => {
+    setSelected(index);
+    setIndex(index);
   };
 
   return (
@@ -120,36 +123,28 @@ const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
               className={`flex justify-between items-start p-shorter4 bg-[#111b21] hover:cursor-pointer hover:bg-[#2a3942] group ${
                 selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
               }`}
-              // onClick={() => {
-              //   setSelected(index);
-              //   setIndex(index);
-              //   console.log(">> INDEX DIV", index);
-              //   console.log(">> SELECTED DIV", selected);
-              // }}
             >
               <div className="flex gap-3 items-center w-full">
                 <div
                   className="avatar placeholder"
-                  onClick={() => {
-                    setSelected(index);
-                    setIndex(index);
-                    // console.log(">> INDEX DIV", index);
-                    // console.log(">> SELECTED DIV", selected);
-                  }}
+                  onClick={handleSimilarIndex}
                 >
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-12 ring ring-customTealGreen">
                     <span className="text-xl">N</span>
                   </div>
                 </div>
                 <div className="flex flex-col w-full text-customWhite">
-                  <p className="w-full flex justify-between font-medium">
+                  <p
+                    className="w-full flex justify-between font-medium"
+                    onClick={handleSimilarIndex}
+                  >
                     +{telephoneStorage}
                     <small className="text-customText">
                       {timestampToDate(e?.timeStamp)}
                     </small>
                   </p>
                   <div className="text-customText w-full flex justify-between">
-                    <p>{e?.textMessage}</p>
+                    <p onClick={handleSimilarIndex}>{e?.textMessage}</p>
                     {e?.textMessage && (
                       <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="">
