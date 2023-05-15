@@ -21,6 +21,7 @@ import { toast } from "react-hot-toast";
 const ChatData = ({ data, getSentMessages }) => {
   const telephoneStorage = getTelephone();
   const [message, setMessage] = useState("");
+  const [incomingMessages, setIncomingMessages] = useState();
 
   const sendText = async () => {
     try {
@@ -51,8 +52,22 @@ const ChatData = ({ data, getSentMessages }) => {
 
   useEffect(() => {
     scrollToBottom();
+    getIncomingMessages();
   }, []);
   // SCROLL END
+
+  const getIncomingMessages = async () => {
+    try {
+      const res = await greenApi.getIncomingMessages();
+      const filteredData = res?.data?.filter((e) =>
+        e?.senderId?.includes("79274420656")
+      );
+      setIncomingMessages(res?.data);
+      console.log("ALL >>", res?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -84,13 +99,20 @@ const ChatData = ({ data, getSentMessages }) => {
           className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-track-[#111b21] scrollbar-thumb-[#212e35]"
         >
           <div className="chat chat-start gap-1 px-shorter2">
-            {Array(30)
+            {incomingMessages
+              ?.filter((e) => e?.senderId?.includes("79274420656"))
+              ?.map((e, index) => (
+                <div className="chat-bubble bg-[#212e35]" key={index}>
+                  {e?.textMessage}
+                </div>
+              ))}
+            {/* {Array(30)
               .fill(null)
               .map((e, index) => (
                 <div className="chat-bubble bg-[#212e35]" key={index}>
                   It's over Anakin, <br />I have the high ground.
                 </div>
-              ))}
+              ))} */}
           </div>
           <div className="chat chat-end gap-1 px-shorter2">
             {data?.map(

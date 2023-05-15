@@ -15,6 +15,7 @@ const Main = ({ title }) => {
   const [selected, setSelected] = useState(0);
   const [index, setIndex] = useState(null);
   const [data, setData] = useState();
+  const [incominMessages, setIncominMessages] = useState();
 
   const getSentMessages = async () => {
     try {
@@ -35,10 +36,26 @@ const Main = ({ title }) => {
     }
   };
 
+  const getIncomingMessages = async () => {
+    try {
+      const res = await greenApi.getIncomingMessages();
+      // console.log("INCOMING >>>", res?.data?.filter((e) => ));
+      const filteredData = res?.data?.filter((e) =>
+        e?.senderId?.includes("79274420656")
+      );
+      // console.log("FILTERED>>", filteredData);
+      setIncominMessages(res?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getSentMessages();
-    // getNotification();
+    // getIncomingMessages();
   }, []);
+
+  // console.log(incominMessages, ">>>>>");
 
   return (
     <>
@@ -63,6 +80,8 @@ const Main = ({ title }) => {
               index={index}
               data={data}
               getSentMessages={getSentMessages}
+              incominMessages={incominMessages}
+              getIncomingMessages={getIncomingMessages}
             />
           </div>
         </div>
