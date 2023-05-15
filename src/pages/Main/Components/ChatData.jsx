@@ -99,15 +99,6 @@ const ChatData = ({ data, getSentMessages }) => {
           style={{ backgroundImage: `url(${degaultBg})` }}
           className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-track-[#111b21] scrollbar-thumb-[#212e35]"
         >
-          <div className="chat chat-start gap-1 px-shorter2">
-            {incomingMessages
-              ?.filter((e) => e?.senderId?.includes(telephoneStorage))
-              ?.map((e, index) => (
-                <div className="chat-bubble bg-[#212e35]" key={index}>
-                  {e?.textMessage}
-                </div>
-              ))}
-          </div>
           <div className="chat chat-end gap-1 px-shorter2">
             {data?.map(
               (e, index) =>
@@ -120,6 +111,15 @@ const ChatData = ({ data, getSentMessages }) => {
                   </div>
                 )
             )}
+          </div>
+          <div className="chat chat-start gap-1 px-shorter2">
+            {incomingMessages
+              ?.filter((e) => e?.senderId?.includes(telephoneStorage))
+              ?.map((e, index) => (
+                <div className="chat-bubble bg-[#212e35]" key={index}>
+                  {e?.textMessage}
+                </div>
+              ))}
           </div>
           <div ref={messagesEndRef} />
         </div>
