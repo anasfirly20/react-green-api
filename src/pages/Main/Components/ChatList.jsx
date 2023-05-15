@@ -144,13 +144,15 @@ const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
                     </small>
                   </p>
                   <div className="text-customText w-full flex justify-between">
-                    <p onClick={handleSimilarIndex}>{e?.textMessage}</p>
+                    <p className="w-full" onClick={handleSimilarIndex}>
+                      {e?.textMessage}
+                    </p>
                     {e?.textMessage && (
                       <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="">
                           <Icon
                             icon="ic:baseline-keyboard-arrow-down"
-                            className="hover:cursor-pointer translate-x-0 group-hover:translate-x-0 transition"
+                            className="hover:cursor-pointer translate-x-14 group-hover:translate-x-0 transition"
                             fontSize={30}
                           />
                         </label>
