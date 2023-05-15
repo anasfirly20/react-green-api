@@ -63,7 +63,7 @@ const ChatData = ({ data, getSentMessages }) => {
       const filteredData = res?.data?.filter((e) =>
         e?.senderId?.includes("79274420656")
       );
-      setIncomingMessages(res?.data);
+      setIncomingMessages(res?.data?.reverse());
       // console.log("ALL >>", res?.data);
     } catch (err) {
       console.log(err);
