@@ -42,8 +42,8 @@ const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
     setTrigger("");
     setSelected(2);
     setIndex(1);
-    console.log("INDEX DELETE >", index);
-    console.log("SELECTED DELETE >", selected);
+    // console.log("INDEX DELETE >", index);
+    // console.log("SELECTED DELETE >", selected);
   };
 
   return (
@@ -133,8 +133,8 @@ const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
                   onClick={() => {
                     setSelected(index);
                     setIndex(index);
-                    console.log(">> INDEX DIV", index);
-                    console.log(">> SELECTED DIV", selected);
+                    // console.log(">> INDEX DIV", index);
+                    // console.log(">> SELECTED DIV", selected);
                   }}
                 >
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-12 ring ring-customTealGreen">
