@@ -10,22 +10,9 @@ import greenApi from "../green.api";
 import ChatBoxEmpty from "./ChatBoxEmpty";
 import ChatData from "./ChatData";
 
-const ChatBox = ({
-  selected,
-  setSelected,
-  index,
-  data,
-  getSentMessages,
-  incominMessages,
-  getIncomingMessages,
-}) => {
+const ChatBox = ({ selected, setSelected, index, data, getSentMessages }) => {
   return selected === index ? (
-    <ChatData
-      data={data}
-      getSentMessages={getSentMessages}
-      incominMessages={incominMessages}
-      getIncomingMessages={getIncomingMessages}
-    />
+    <ChatData data={data} getSentMessages={getSentMessages} />
   ) : (
     <ChatBoxEmpty />
   );

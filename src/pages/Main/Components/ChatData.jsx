@@ -32,6 +32,7 @@ const ChatData = ({ data, getSentMessages }) => {
         });
         setMessage("");
         getSentMessages();
+        getIncomingMessages();
       }
     } catch (err) {
       if (err?.message === "Network Error") {

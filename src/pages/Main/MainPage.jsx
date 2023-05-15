@@ -27,15 +27,6 @@ const Main = ({ title }) => {
     }
   };
 
-  const getNotification = async () => {
-    try {
-      const res = await greenApi.receiveNotification();
-      console.log("NOTIF >>>", res?.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const getIncomingMessages = async () => {
     try {
       const res = await greenApi.getIncomingMessages();
@@ -81,8 +72,6 @@ const Main = ({ title }) => {
               index={index}
               data={data}
               getSentMessages={getSentMessages}
-              incominMessages={incominMessages}
-              getIncomingMessages={getIncomingMessages}
             />
           </div>
         </div>
