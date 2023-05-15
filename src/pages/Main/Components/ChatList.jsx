@@ -13,7 +13,7 @@ import greenApi from "../green.api";
 import { timestampToDate, getTelephone, enterKeyDown } from "../../../../utils";
 import { useNavigate } from "react-router-dom";
 
-const ChatList = ({ selected, setSelected, setIndex, data }) => {
+const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
   const navigate = useNavigate();
   const [chats, setChats] = useState(chatData);
   const [telephone, setTelephone] = useState();
@@ -40,6 +40,10 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
   const handeDeleteChat = () => {
     localStorage.removeItem("telephone");
     setTrigger("");
+    setSelected(2);
+    setIndex(1);
+    console.log("INDEX DELETE >", index);
+    console.log("SELECTED DELETE >", selected);
   };
 
   return (
@@ -116,13 +120,23 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
               className={`flex justify-between items-start p-shorter4 bg-[#111b21] hover:cursor-pointer hover:bg-[#2a3942] group ${
                 selected == index ? "bg-[#2a3942]" : "bg-[#111b21]"
               }`}
-              onClick={() => {
-                setSelected(index);
-                setIndex(index);
-              }}
+              // onClick={() => {
+              //   setSelected(index);
+              //   setIndex(index);
+              //   console.log(">> INDEX DIV", index);
+              //   console.log(">> SELECTED DIV", selected);
+              // }}
             >
               <div className="flex gap-3 items-center w-full">
-                <div className="avatar placeholder">
+                <div
+                  className="avatar placeholder"
+                  onClick={() => {
+                    setSelected(index);
+                    setIndex(index);
+                    console.log(">> INDEX DIV", index);
+                    console.log(">> SELECTED DIV", selected);
+                  }}
+                >
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-12 ring ring-customTealGreen">
                     <span className="text-xl">N</span>
                   </div>
@@ -141,7 +155,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
                         <label tabIndex={0} className="">
                           <Icon
                             icon="ic:baseline-keyboard-arrow-down"
-                            className="hover:cursor-pointer translate-x-14 group-hover:translate-x-0 transition"
+                            className="hover:cursor-pointer translate-x-0 group-hover:translate-x-0 transition"
                             fontSize={30}
                           />
                         </label>
@@ -150,7 +164,7 @@ const ChatList = ({ selected, setSelected, setIndex, data }) => {
                           className="dropdown-content menu p-2 shadow text-customWhite bg-[#212e35] w-52 mt-3 space-y-3"
                         >
                           <li
-                            className="text-base cursor-pointer hover:bg-customBlack px-5 py-2"
+                            className="text-base cursor-pointer hover:bg-customBlack px-5 py-2 z-20"
                             onClick={handeDeleteChat}
                           >
                             Delete Chat

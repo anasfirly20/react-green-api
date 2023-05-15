@@ -71,6 +71,7 @@ const Main = ({ title }) => {
               setSelected={setSelected}
               setIndex={setIndex}
               data={data}
+              index={index}
             />
           </div>
           <div className="w-[70%] bg-[#212e35] relative">
