@@ -40,6 +40,7 @@ const ChatData = ({ data, getSentMessages }) => {
         toast.error(err?.message);
       }
       console.log(err);
+      toast.error(err);
     }
   };
 
@@ -63,7 +64,7 @@ const ChatData = ({ data, getSentMessages }) => {
         e?.senderId?.includes("79274420656")
       );
       setIncomingMessages(res?.data);
-      console.log("ALL >>", res?.data);
+      // console.log("ALL >>", res?.data);
     } catch (err) {
       console.log(err);
     }
@@ -100,19 +101,12 @@ const ChatData = ({ data, getSentMessages }) => {
         >
           <div className="chat chat-start gap-1 px-shorter2">
             {incomingMessages
-              ?.filter((e) => e?.senderId?.includes("79274420656"))
+              ?.filter((e) => e?.senderId?.includes(telephoneStorage))
               ?.map((e, index) => (
                 <div className="chat-bubble bg-[#212e35]" key={index}>
                   {e?.textMessage}
                 </div>
               ))}
-            {/* {Array(30)
-              .fill(null)
-              .map((e, index) => (
-                <div className="chat-bubble bg-[#212e35]" key={index}>
-                  It's over Anakin, <br />I have the high ground.
-                </div>
-              ))} */}
           </div>
           <div className="chat chat-end gap-1 px-shorter2">
             {data?.map(
