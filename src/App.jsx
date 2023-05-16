@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { getIdInstance, getApiTokenInstance } from "../utils";
 
 // Miscellaneous
-import { Pul, PulseLoaderseLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 const MainPage = lazy(() => import("./pages/Main/MainPage"));
 const LoginPage = lazy(() => import("./pages/Login/Login"));
