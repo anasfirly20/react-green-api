@@ -82,6 +82,7 @@ const ChatData = ({ data, getSentMessages }) => {
       merged = [...data, ...incomingMessages];
     }
     setMergedMessages(merged);
+    // console.log("MERGED >", mergedMessages);
   }, [data, incomingMessages]);
 
   return (
@@ -119,6 +120,7 @@ const ChatData = ({ data, getSentMessages }) => {
               (e, index) =>
                 e?.chatId === `${telephoneStorage}@c.us` && (
                   <div
+                    key={index}
                     className={`chat gap-1 px-shorter2 ${
                       e?.type === "incoming" ? "chat-start" : "chat-end"
                     }`}
