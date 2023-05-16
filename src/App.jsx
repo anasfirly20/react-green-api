@@ -7,6 +7,9 @@ import { Toaster } from "react-hot-toast";
 // Utils
 import { getIdInstance, getApiTokenInstance } from "../utils";
 
+// Miscellaneous
+import { Pul, PulseLoaderseLoader } from "react-spinners";
+
 const MainPage = lazy(() => import("./pages/Main/MainPage"));
 const LoginPage = lazy(() => import("./pages/Login/Login"));
 
@@ -27,7 +30,7 @@ const App = () => {
           <Suspense
             fallback={
               <section className="flex flex-col items-center justify-center min-h-screen">
-                <h1>Loading...</h1>
+                <PulseLoader color="#075E54" />
               </section>
             }
           >
