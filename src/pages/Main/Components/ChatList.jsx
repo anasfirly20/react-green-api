@@ -10,7 +10,7 @@ import { Icon } from "@iconify/react";
 import greenApi from "../green.api";
 
 // Utils
-import { timestampToDate, getTelephone, enterKeyDown } from "../../../../utils";
+import { timestampToTime, getTelephone, enterKeyDown } from "../../../../utils";
 import { useNavigate } from "react-router-dom";
 
 const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
@@ -140,7 +140,7 @@ const ChatList = ({ selected, setSelected, setIndex, data, index }) => {
                   >
                     +{telephoneStorage}
                     <small className="text-customText">
-                      {timestampToDate(e?.timeStamp)}
+                      {timestampToTime(e?.timeStamp)}
                     </small>
                   </p>
                   <div className="text-customText w-full flex justify-between">

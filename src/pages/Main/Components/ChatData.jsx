@@ -13,7 +13,12 @@ import greenApi from "../green.api";
 import { iconsBottomChatData, iconsChatData } from "../constants/userData";
 
 // Utils
-import { getTelephone, enterKeyDown } from "../../../../utils";
+import {
+  getTelephone,
+  enterKeyDown,
+  timestampToDate,
+  timestampToTime,
+} from "../../../../utils";
 
 // Miscellaneous
 import { toast } from "react-hot-toast";
@@ -22,6 +27,7 @@ const ChatData = ({ data, getSentMessages }) => {
   const telephoneStorage = getTelephone();
   const [message, setMessage] = useState("");
   const [incomingMessages, setIncomingMessages] = useState();
+  const [mergedMessages, setMergedMessages] = useState([]);
 
   const sendText = async () => {
     try {
@@ -61,14 +67,22 @@ const ChatData = ({ data, getSentMessages }) => {
     try {
       const res = await greenApi.getIncomingMessages();
       const filteredData = res?.data?.filter((e) =>
-        e?.senderId?.includes("79274420656")
+        e?.senderId?.includes(telephoneStorage)
       );
-      setIncomingMessages(res?.data?.reverse());
-      // console.log("ALL >>", res?.data);
+      setIncomingMessages(filteredData?.reverse());
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    // Merge the data and incomingMessages arrays
+    let merged = data;
+    if (Array.isArray(incomingMessages)) {
+      merged = [...data, ...incomingMessages];
+    }
+    setMergedMessages(merged);
+  }, [data, incomingMessages]);
 
   return (
     <>
@@ -99,28 +113,40 @@ const ChatData = ({ data, getSentMessages }) => {
           style={{ backgroundImage: `url(${degaultBg})` }}
           className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-track-[#111b21] scrollbar-thumb-[#212e35]"
         >
-          <div className="chat chat-end gap-1 px-shorter2">
-            {data?.map(
+          {mergedMessages
+            ?.sort((a, b) => a?.timestamp - b.timestamp)
+            ?.map(
               (e, index) =>
                 e?.chatId === `${telephoneStorage}@c.us` && (
                   <div
-                    key={index}
-                    className="chat-bubble bg-customTealGreenDark"
+                    className={`chat gap-1 px-shorter2 ${
+                      e?.type === "incoming" ? "chat-start" : "chat-end"
+                    }`}
                   >
-                    {e?.textMessage}
+                    {e?.textMessage && (
+                      <div
+                        key={index}
+                        className={`flex flex-col chat-bubble ${
+                          e?.type === "incoming"
+                            ? "bg-[#212e35]"
+                            : "bg-customTealGreenDark"
+                        }`}
+                      >
+                        <p>{e?.textMessage}</p>
+                        <small
+                          className={`${
+                            e?.type === "incoming"
+                              ? "text-customText"
+                              : "text-[#7ca398]"
+                          }`}
+                        >
+                          {timestampToTime(e?.timestamp)}
+                        </small>
+                      </div>
+                    )}
                   </div>
                 )
             )}
-          </div>
-          <div className="chat chat-start gap-1 px-shorter2">
-            {incomingMessages
-              ?.filter((e) => e?.senderId?.includes(telephoneStorage))
-              ?.map((e, index) => (
-                <div className="chat-bubble bg-[#212e35]" key={index}>
-                  {e?.textMessage}
-                </div>
-              ))}
-          </div>
           <div ref={messagesEndRef} />
         </div>
         {/* CHAT BUBBLE END */}
